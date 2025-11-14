@@ -3,7 +3,8 @@ const laptop = {
     model: 'Alienware',
     memory: ['SSD', 'HDD'],
     cores: 8,
-    memorySize: [256, 512]
+    memorySize: [256, 512],
+    discount: true
 }
 
 console.log(`
@@ -11,5 +12,7 @@ console.log(`
     model: ${laptop.model} \n
     memory: ${laptop.memory} \n
     cores: ${laptop.cores} \n
-    memory size: ${laptop.memorySize} 
+    memory size: ${laptop.memorySize} \n
+    ${laptop.discount? `on SALE`: '' }
     `)
+
