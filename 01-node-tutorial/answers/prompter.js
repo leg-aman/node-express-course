@@ -22,9 +22,7 @@ const getBody = (req, callback) => {
 
 const  isPalindrome = (word) => {
     if (word != "" ) {
-        // store the word inside two different arrays
-        // array1 is stack
-        //   array2 is queue
+        // store the word inside two different arrays array1 is stack and array2 is queue
         const arr = []
         const arr2 = []
         for(let char in word){
