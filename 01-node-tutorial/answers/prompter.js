@@ -20,6 +20,27 @@ const getBody = (req, callback) => {
   });
 };
 
+const  isPalindrome = (word) => {
+    if (word != "" ) {
+        // store the word inside two different arrays array1 is stack and array2 is queue
+        const arr = []
+        const arr2 = []
+        for(let char in word){
+            arr.push(word[char])
+            arr2.push(word[char])
+        }
+        
+         
+        while(arr.length > 0 ){
+            if (arr.pop() !== arr2.shift()){
+                return false
+            }
+        }
+        return true
+    }
+  }
+
+
 // here, you could declare one or more variables to store what comes back from the form.
 let item = "Enter something below.";
 
@@ -28,6 +49,7 @@ let item = "Enter something below.";
 const form = () => {
   return `
   <body>
+  <h2>Palindrome Checker</h2>
   <p>${item}</p>
   <form method="POST">
   <input name="item"></input>
@@ -45,7 +67,8 @@ const server = http.createServer((req, res) => {
       console.log("The body of the post is ", body);
       // here, you can add your own logic
       if (body["item"]) {
-        item = body["item"];
+        const word = body["item"]
+        item = isPalindrome(word)? word +' is palindrome' : word +' not palindrome' ;
       } else {
         item = "Nothing was entered.";
       }
