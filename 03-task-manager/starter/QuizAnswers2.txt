@@ -1,0 +1,17 @@
+Why did we create asyncWrappper?
+because Express does not automatically catch errors thrown in async/await functions.
+without asyncWrappper, every async controller would need this everywhere: try/ catch block.
+That gets repetitive fast. Therefore, asyncWrappper does wraps your async function, automatically catches any error and forwards it to your global error handler using next(error).
+So instead of repeating try/catch, you write clean, readable controllers.
+
+const getTask = asyncWrapper(async (req, res, next) => {
+  const { id: taskID } = req.params;
+
+  const task = await Task.findOne({ _id: taskID });
+
+  if (!task) {
+    return next(new CustomAPIError(`No task with id: ${taskID}`, 404));
+  }
+
+  res.status(200).json({ task });
+});
